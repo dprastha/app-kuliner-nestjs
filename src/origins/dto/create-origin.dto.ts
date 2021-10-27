@@ -1,11 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateFoodDto {
+export class CreateOriginDto {
   @IsNotEmpty()
   @IsString()
   name: string;
-
-  @IsNotEmpty()
-  @IsString()
-  description: string;
 }

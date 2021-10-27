@@ -4,7 +4,7 @@ import { Food } from './food.entity';
 @EntityRepository(Food)
 export class FoodsRepository extends Repository<Food> {
   async getFoods(): Promise<Food[]> {
-    const foods = this.createQueryBuilder('food').getMany();
+    const foods = await this.createQueryBuilder('food').getMany();
 
     return foods;
   }
