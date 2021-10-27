@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateFoodDto } from './dto/create-food.dto';
+import { UpdateFoodDto } from './dto/update-food.dto';
 import { Food } from './food.entity';
 import { FoodsRepository } from './foods.repository';
 
@@ -16,16 +17,35 @@ export class FoodsService {
   }
 
   createFood(createFoodDto: CreateFoodDto): Promise<Food> {
-    // const { name, description, price } = createFoodDto;
-    // const food = this.foodsRepository.create({
-    //   name,
-    //   description,
-    //   price,
-    // });
-
-    // await this.foodsRepository.save(food);
-    // return food;
-
     return this.foodsRepository.createFood(createFoodDto);
+  }
+
+  async getFoodById(id: number): Promise<Food> {
+    const found = await this.foodsRepository.findOne(id);
+
+    if (!found) {
+      throw new NotFoundException();
+    }
+
+    return found;
+  }
+
+  async updateFood(id: number, updateFoodDto: UpdateFoodDto): Promise<Food> {
+    const { name, description } = updateFoodDto;
+    const food = await this.getFoodById(id);
+
+    food.name = name;
+    food.description = description;
+
+    await this.foodsRepository.save(food);
+    return food;
+  }
+
+  async deleteFood(id: number): Promise<void> {
+    const result = await this.foodsRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException();
+    }
   }
 }

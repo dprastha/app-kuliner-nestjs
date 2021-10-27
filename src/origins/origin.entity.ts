@@ -7,8 +7,8 @@ export class Origin {
   id: number;
 
   @Column()
-  originname: string;
+  name: string;
 
-  @ManyToOne(() => Food, (food) => food.origin)
-  foods: Food[];
+  // @ManyToOne(() => Food, (food) => food.origin)
+  // foods: Food[];
 }

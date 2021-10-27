@@ -1,5 +1,14 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CreateFoodDto } from './dto/create-food.dto';
+import { UpdateFoodDto } from './dto/update-food.dto';
 import { Food } from './food.entity';
 import { FoodsService } from './foods.service';
 
@@ -12,8 +21,26 @@ export class FoodsController {
     return this.foodService.getFoods();
   }
 
+  @Get('/:id')
+  getFoodById(@Param('id') id: number): Promise<Food> {
+    return this.foodService.getFoodById(id);
+  }
+
   @Post()
-  createFood(createFoodDto: CreateFoodDto): Promise<Food> {
+  createFood(@Body() createFoodDto: CreateFoodDto): Promise<Food> {
     return this.foodService.createFood(createFoodDto);
+  }
+
+  @Put('/:id')
+  updateFood(
+    @Param('id') id: number,
+    @Body() updateFoodDto: UpdateFoodDto,
+  ): Promise<Food> {
+    return this.foodService.updateFood(id, updateFoodDto);
+  }
+
+  @Delete('/:id')
+  deleteFood(@Param('id') id: number): Promise<void> {
+    return this.foodService.deleteFood(id);
   }
 }

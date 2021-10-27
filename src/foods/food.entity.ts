@@ -12,9 +12,6 @@ export class Food {
   @Column()
   description: string;
 
-  @Column()
-  price: number;
-
-  @ManyToOne(() => Origin, (origin) => origin.foods)
-  origin: Origin;
+  // @ManyToOne(() => Origin, (origin) => origin.foods)
+  // origin: Origin;
 }
