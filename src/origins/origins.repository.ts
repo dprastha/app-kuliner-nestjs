@@ -11,10 +11,11 @@ export class OriginsRepository extends Repository<Origin> {
   }
 
   async createOrigin(CreateOriginDto: CreateOriginDto): Promise<Origin> {
-    const { name } = CreateOriginDto;
+    const { name, foods } = CreateOriginDto;
 
     const origin = this.create({
       name,
+      foods,
     });
 
     await this.save(origin);

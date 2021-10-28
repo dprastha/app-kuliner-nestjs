@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Food } from 'src/foods/food.entity';
 
 @Entity()
@@ -9,6 +16,12 @@ export class Origin {
   @Column()
   name: string;
 
-  // @ManyToOne(() => Food, (food) => food.origin)
-  // foods: Food[];
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @ManyToOne(() => Food, (food) => food.origin)
+  foods: Food[];
 }
