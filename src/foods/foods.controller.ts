@@ -6,13 +6,16 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateFoodDto } from './dto/create-food.dto';
 import { UpdateFoodDto } from './dto/update-food.dto';
 import { Food } from './food.entity';
 import { FoodsService } from './foods.service';
 
 @Controller('foods')
+@UseGuards(AuthGuard())
 export class FoodsController {
   constructor(private foodService: FoodsService) {}
 

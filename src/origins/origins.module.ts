@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OriginsRepository } from './origins.repository';
 import { OriginsController } from './origins.controller';
 import { OriginsService } from './origins.service';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([OriginsRepository])],
+  imports: [TypeOrmModule.forFeature([OriginsRepository]), AuthModule],
   controllers: [OriginsController],
   providers: [OriginsService],
 })
