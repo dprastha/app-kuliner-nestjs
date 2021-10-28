@@ -22,6 +22,6 @@ export class Origin {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => Food, (food) => food.origin)
+  @ManyToOne(() => Food, (food) => food.origin, { eager: true })
   foods: Food[];
 }
