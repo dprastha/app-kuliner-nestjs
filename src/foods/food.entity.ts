@@ -6,6 +6,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -22,9 +23,15 @@ export class Food {
   @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ nullable: true })
   updated_at: Date;
 
-  @ManyToOne(() => Origin, (origin) => origin.foods, { eager: false })
+  @DeleteDateColumn({ nullable: true })
+  deleted_at: Date;
+
+  @ManyToOne(() => Origin, (origin) => origin.foods, {
+    eager: false,
+    nullable: true,
+  })
   origin: Origin;
 }
