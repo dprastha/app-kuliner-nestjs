@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { Food } from 'src/foods/food.entity';
+import { Food } from '../../foods/food.entity';
 
 export class CreateOriginDto {
   @IsNotEmpty()

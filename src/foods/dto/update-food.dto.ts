@@ -1,5 +1,5 @@
 import { IsOptional, IsString } from 'class-validator';
-import { Origin } from 'src/origins/origin.entity';
+import { Origin } from '../../origins/origin.entity';
 
 export class UpdateFoodDto {
   @IsOptional()
