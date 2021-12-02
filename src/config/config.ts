@@ -8,13 +8,11 @@ export const config = () => ({
     database: process.env.DATABASE_NAME,
     synchronize: false,
     logging: true,
-    entities: ['dist/**/*.entity.{js, ts}'],
-    migrations: ['dist/**/*.migration.{js, ts}'],
-    subscribers: ['dist/**/*.subscriber.{js, ts}'],
+    entities: ['build/entities/*.entity.js'],
+    migrations: ['build/migrations/*.js'],
     cli: {
-      entitiesDir: 'src/entity',
-      migrationsDir: 'src/migration',
-      subscribersDir: 'src/subscriber',
+      entitiesDir: 'src/entities',
+      migrationsDir: 'src/migrations',
     },
   },
 });
