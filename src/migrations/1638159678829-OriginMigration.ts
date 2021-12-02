@@ -52,6 +52,7 @@ export class OriginMigration1638159678829 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'origin',
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
 
@@ -62,6 +63,7 @@ export class OriginMigration1638159678829 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'food',
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }

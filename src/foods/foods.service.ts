@@ -13,7 +13,9 @@ export class FoodsService {
   ) {}
 
   getFoods(): Promise<Food[]> {
-    return this.foodsRepository.getFoods();
+    return this.foodsRepository.find({
+      relations: ['originId'],
+    });
   }
 
   createFood(createFoodDto: CreateFoodDto): Promise<Food> {
@@ -21,7 +23,9 @@ export class FoodsService {
   }
 
   async getFoodById(id: number): Promise<Food> {
-    const found = await this.foodsRepository.findOne(id);
+    const found = await this.foodsRepository.findOne(id, {
+      relations: ['originId'],
+    });
 
     if (!found) {
       throw new NotFoundException();
@@ -31,11 +35,12 @@ export class FoodsService {
   }
 
   async updateFood(id: number, updateFoodDto: UpdateFoodDto): Promise<Food> {
-    const { name, description } = updateFoodDto;
+    const { name, description, originId } = updateFoodDto;
     const food = await this.getFoodById(id);
 
     food.name = name;
     food.description = description;
+    food.originId = originId;
 
     await this.foodsRepository.save(food);
     return food;

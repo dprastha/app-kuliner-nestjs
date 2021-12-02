@@ -19,12 +19,12 @@ export class FoodsRepository extends Repository<Food> {
   }
 
   async createFood(createFoodDto: CreateFoodDto): Promise<Food> {
-    const { name, description, origin } = createFoodDto;
+    const { name, description, originId } = createFoodDto;
 
     const food = this.create({
       name,
       description,
-      origin,
+      originId,
     });
 
     await this.save(food);

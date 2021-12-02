@@ -11,5 +11,5 @@ export class CreateFoodDto {
   description: string;
 
   @IsOptional()
-  origin: Origin;
+  originId: Origin;
 }
