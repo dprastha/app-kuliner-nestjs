@@ -17,7 +17,7 @@ export class Origin {
   @Column()
   name: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ nullable: true })
   created_at: Date;
 
   @UpdateDateColumn({ nullable: true })

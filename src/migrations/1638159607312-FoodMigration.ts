@@ -28,10 +28,12 @@ export class FoodMigration1638159607312 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'updated_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'deleted_at',

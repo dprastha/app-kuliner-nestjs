@@ -29,10 +29,12 @@ export class OriginMigration1638159678829 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'updated_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'deleted_at',
