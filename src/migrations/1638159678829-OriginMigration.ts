@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class FoodMigration1638159607312 implements MigrationInterface {
+export class OriginMigration1638159678829 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'food',
+        name: 'origin',
         columns: [
           {
             name: 'id',
@@ -18,28 +18,25 @@ export class FoodMigration1638159607312 implements MigrationInterface {
             isGenerated: true,
           },
           {
-            name: 'originId',
+            name: 'foodsId',
             type: 'int',
+            isNullable: true,
           },
           {
             name: 'name',
             type: 'varchar',
           },
           {
-            name: 'description',
-            type: 'varchar',
-          },
-          {
             name: 'created_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'updated_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'deleted_at',
-            type: Date(),
+            type: 'timestamp',
             isNullable: true,
           },
         ],
@@ -55,14 +52,24 @@ export class FoodMigration1638159607312 implements MigrationInterface {
         onDelete: 'CASCADE',
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'origin',
+      new TableForeignKey({
+        columnNames: ['foodsId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'food',
+        onDelete: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('food');
+    const table = await queryRunner.getTable('origin');
     const foreignKey = table.foreignKeys.find((fk) =>
-      fk.columnNames.includes('originId'),
+      fk.columnNames.includes('foodsId'),
     );
-    queryRunner.dropForeignKey('food', foreignKey);
-    queryRunner.dropTable('food');
+    queryRunner.dropForeignKey('origin', foreignKey);
+    queryRunner.dropTable('origin');
   }
 }

@@ -11,7 +11,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { CreateOriginDto } from './dto/create-origin.dto';
 import { UpdateOriginDto } from './dto/update-origin.dto';
-import { Origin } from './origin.entity';
+import { Origin } from '../entities/origin.entity';
 import { OriginsService } from './origins.service';
 
 @Controller('origins')

@@ -11,7 +11,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { CreateFoodDto } from './dto/create-food.dto';
 import { UpdateFoodDto } from './dto/update-food.dto';
-import { Food } from './food.entity';
+import { Food } from '../entities/food.entity';
 import { FoodsService } from './foods.service';
 import { Logger } from '@nestjs/common';
 

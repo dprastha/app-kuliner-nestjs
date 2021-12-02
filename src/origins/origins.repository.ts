@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateOriginDto } from './dto/create-origin.dto';
-import { Origin } from './origin.entity';
+import { Origin } from '../entities/origin.entity';
 
 @EntityRepository(Origin)
 export class OriginsRepository extends Repository<Origin> {
