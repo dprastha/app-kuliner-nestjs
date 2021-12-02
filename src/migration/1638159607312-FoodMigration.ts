@@ -1,9 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class FoodMigration1638159607312 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -20,6 +15,7 @@ export class FoodMigration1638159607312 implements MigrationInterface {
           {
             name: 'originId',
             type: 'int',
+            isNullable: true,
           },
           {
             name: 'name',
@@ -31,28 +27,18 @@ export class FoodMigration1638159607312 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'updated_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'deleted_at',
-            type: Date(),
+            type: 'timestamp',
             isNullable: true,
           },
         ],
-      }),
-    );
-
-    await queryRunner.createForeignKey(
-      'food',
-      new TableForeignKey({
-        columnNames: ['originId'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'origin',
-        onDelete: 'CASCADE',
       }),
     );
   }

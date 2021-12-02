@@ -20,6 +20,7 @@ export class OriginMigration1638159678829 implements MigrationInterface {
           {
             name: 'foodsId',
             type: 'int',
+            isNullable: true,
           },
           {
             name: 'name',
@@ -27,18 +28,28 @@ export class OriginMigration1638159678829 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'updated_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'deleted_at',
-            type: Date(),
+            type: 'timestamp',
             isNullable: true,
           },
         ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'food',
+      new TableForeignKey({
+        columnNames: ['originId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'origin',
+        onDelete: 'CASCADE',
       }),
     );
 

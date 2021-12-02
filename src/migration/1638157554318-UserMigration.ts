@@ -23,15 +23,15 @@ export class UserMigration1638157554318 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'updated_at',
-            type: Date(),
+            type: 'timestamp',
           },
           {
             name: 'deleted_at',
-            type: Date(),
+            type: 'timestamp',
             isNullable: true,
           },
         ],
