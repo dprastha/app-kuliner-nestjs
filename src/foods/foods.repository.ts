@@ -1,7 +1,7 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateFoodDto } from './dto/create-food.dto';
-import { Food } from './food.entity';
+import { Food } from '../entities/food.entity';
 import { Logger } from '@nestjs/common';
 @EntityRepository(Food)
 export class FoodsRepository extends Repository<Food> {

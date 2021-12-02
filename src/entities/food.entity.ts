@@ -1,4 +1,4 @@
-import { Origin } from '../origins/origin.entity';
+import { Origin } from './origin.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
