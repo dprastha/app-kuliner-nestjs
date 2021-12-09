@@ -14,7 +14,7 @@ export class OriginsService {
 
   getOrigins(): Promise<Origin[]> {
     return this.originsRepository.find({
-      relations: ['foodsId'],
+      relations: ['foods'],
     });
   }
 
@@ -24,7 +24,7 @@ export class OriginsService {
 
   async getOriginById(id: number): Promise<Origin> {
     const found = this.originsRepository.findOne(id, {
-      relations: ['foodsId'],
+      relations: ['foods'],
     });
 
     if (!found) {

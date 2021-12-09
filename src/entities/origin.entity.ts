@@ -26,8 +26,8 @@ export class Origin {
   @DeleteDateColumn({ nullable: true })
   deleted_at: Date;
 
-  @ManyToOne(() => Food, (food) => food.originId, {
+  @ManyToOne(() => Food, (food) => food.origin, {
     eager: true,
   })
-  foodsId: Food[];
+  foods: Food[];
 }

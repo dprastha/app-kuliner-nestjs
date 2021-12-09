@@ -14,7 +14,7 @@ export class FoodsService {
 
   getFoods(): Promise<Food[]> {
     return this.foodsRepository.find({
-      relations: ['originId'],
+      relations: ['origin'],
     });
   }
 
@@ -24,7 +24,7 @@ export class FoodsService {
 
   async getFoodById(id: number): Promise<Food> {
     const found = await this.foodsRepository.findOne(id, {
-      relations: ['originId'],
+      relations: ['origin'],
     });
 
     if (!found) {
@@ -35,12 +35,12 @@ export class FoodsService {
   }
 
   async updateFood(id: number, updateFoodDto: UpdateFoodDto): Promise<Food> {
-    const { name, description, originId } = updateFoodDto;
+    const { name, description, origin } = updateFoodDto;
     const food = await this.getFoodById(id);
 
     food.name = name;
     food.description = description;
-    food.originId = originId;
+    food.origin = origin;
 
     await this.foodsRepository.save(food);
     return food;

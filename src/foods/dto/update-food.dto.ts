@@ -11,5 +11,5 @@ export class UpdateFoodDto {
   description: string;
 
   @IsOptional()
-  originId: Origin;
+  origin: Origin;
 }

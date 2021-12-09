@@ -7,5 +7,5 @@ export class CreateOriginDto {
   name: string;
 
   @IsOptional()
-  foodsId: Food[];
+  foods: Food[];
 }
