@@ -29,10 +29,12 @@ export class OriginMigration1638159678829 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'updated_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'deleted_at',
@@ -50,6 +52,7 @@ export class OriginMigration1638159678829 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'origin',
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
 
@@ -60,6 +63,7 @@ export class OriginMigration1638159678829 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'food',
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }

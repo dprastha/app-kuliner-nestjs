@@ -13,7 +13,9 @@ export class OriginsService {
   ) {}
 
   getOrigins(): Promise<Origin[]> {
-    return this.originsRepository.getOrigins();
+    return this.originsRepository.find({
+      relations: ['foods'],
+    });
   }
 
   createOrigin(createOriginDto: CreateOriginDto): Promise<Origin> {
@@ -21,7 +23,9 @@ export class OriginsService {
   }
 
   async getOriginById(id: number): Promise<Origin> {
-    const found = this.originsRepository.findOne(id);
+    const found = this.originsRepository.findOne(id, {
+      relations: ['foods'],
+    });
 
     if (!found) {
       throw new NotFoundException();

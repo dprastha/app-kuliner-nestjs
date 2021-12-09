@@ -32,6 +32,7 @@ export class Food {
   @ManyToOne(() => Origin, (origin) => origin.foods, {
     eager: false,
     nullable: true,
+    cascade: true,
   })
   origin: Origin;
 }

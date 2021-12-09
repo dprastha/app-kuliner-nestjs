@@ -17,7 +17,7 @@ export class Origin {
   @Column()
   name: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ nullable: true })
   created_at: Date;
 
   @UpdateDateColumn({ nullable: true })
@@ -26,6 +26,8 @@ export class Origin {
   @DeleteDateColumn({ nullable: true })
   deleted_at: Date;
 
-  @ManyToOne(() => Food, (food) => food.origin, { eager: true })
+  @ManyToOne(() => Food, (food) => food.origin, {
+    eager: true,
+  })
   foods: Food[];
 }

@@ -3,23 +3,32 @@ import { FoodsModule } from './foods/foods.module';
 import { OriginsModule } from './origins/origins.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
-import { config } from './config/config';
-import { DatabaseConfig } from './config/database.config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { configValidationSchema } from './config/config.schema';
 
 @Module({
   imports: [
     FoodsModule,
     OriginsModule,
+    AuthModule,
     ConfigModule.forRoot({
-      isGlobal: true,
-      load: [config],
+      envFilePath: [`.env`],
+      validationSchema: configValidationSchema,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useClass: DatabaseConfig,
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'postgres',
+        autoLoadEntities: true,
+        synchronize: true,
+        host: configService.get('DB_HOST'),
+        port: configService.get('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
+      }),
     }),
-    AuthModule,
   ],
 })
 export class AppModule {}
