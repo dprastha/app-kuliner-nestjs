@@ -1,7 +1,15 @@
+# Compiled Output
+/dist
+build/
+node_modules/
+
+# Code Editor
 .idea/
 .vscode/
-node_modules/
-build/
+
+# Environment
+.env
+
+# Others
 tmp/
 temp/
-.env
