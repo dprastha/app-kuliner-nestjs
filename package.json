@@ -1,8 +1,8 @@
 {
    "name": "app-kuliner",
    "version": "2.0.0",
-   "description": "",
-   "author": "",
+   "description": "App Kuliner REST API",
+   "author": "Daniel Prastha",
    "private": true,
    "license": "UNLICENSED",
    "scripts": {
@@ -12,7 +12,7 @@
       "start": "ts-node src/main.ts",
       "start:dev": "nest start --watch",
       "start:debug": "nest start --debug --watch",
-      "start:prod": "node build/*",
+      "start:prod": "STAGE=prod node dist/main",
       "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
       "test": "STAGE=dev jest",
       "test:watch": "jest --watch",
