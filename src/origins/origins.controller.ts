@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -14,6 +15,7 @@ import { CreateOriginDto } from './dto/create-origin.dto';
 import { UpdateOriginDto } from './dto/update-origin.dto';
 import { Origin } from '../entities/origin.entity';
 import { OriginsService } from './origins.service';
+import { GetOriginsFilterDto } from './dto/get-origins-filter.dto';
 
 @Controller('origins')
 @UseGuards(AuthGuard())
@@ -22,10 +24,13 @@ export class OriginsController {
   constructor(private originService: OriginsService) {}
 
   @Get()
-  getOrigins(): Promise<Origin[]> {
-    this.logger.verbose('Retrieving all origin data', true);
+  getOrigins(@Query() filterDto: GetOriginsFilterDto): Promise<Origin[]> {
+    this.logger.verbose(
+      `Retrieving all origin data. Filters: ${JSON.stringify(filterDto)}`,
+      true,
+    );
 
-    return this.originService.getOrigins();
+    return this.originService.getOrigins(filterDto);
   }
 
   @Get('/:id')

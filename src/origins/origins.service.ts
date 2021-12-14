@@ -4,6 +4,7 @@ import { CreateOriginDto } from './dto/create-origin.dto';
 import { UpdateOriginDto } from './dto/update-origin.dto';
 import { Origin } from '../entities/origin.entity';
 import { OriginsRepository } from './origins.repository';
+import { GetOriginsFilterDto } from './dto/get-origins-filter.dto';
 
 @Injectable()
 export class OriginsService {
@@ -12,8 +13,8 @@ export class OriginsService {
     private originsRepository: OriginsRepository,
   ) {}
 
-  getOrigins(): Promise<Origin[]> {
-    return this.originsRepository.getOrigins();
+  getOrigins(filterDto: GetOriginsFilterDto): Promise<Origin[]> {
+    return this.originsRepository.getOrigins(filterDto);
   }
 
   createOrigin(createOriginDto: CreateOriginDto): Promise<Origin> {
