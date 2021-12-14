@@ -13,9 +13,7 @@ export class OriginsService {
   ) {}
 
   getOrigins(): Promise<Origin[]> {
-    return this.originsRepository.find({
-      relations: ['foods'],
-    });
+    return this.originsRepository.getOrigins();
   }
 
   createOrigin(createOriginDto: CreateOriginDto): Promise<Origin> {
