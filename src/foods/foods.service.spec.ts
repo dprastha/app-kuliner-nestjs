@@ -29,7 +29,7 @@ describe('FoodsService', () => {
   describe('getFoods', () => {
     it('calls FoodsRepository.getFoods and return the results', async () => {
       foodsRepository.getFoods.mockResolvedValue('someValue');
-      const result = await foodsService.getFoods();
+      const result = await foodsService.getFoods(null);
       expect(result).toEqual('someValue');
     });
   });
