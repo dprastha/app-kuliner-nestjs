@@ -13,9 +13,7 @@ export class FoodsService {
   ) {}
 
   getFoods(): Promise<Food[]> {
-    return this.foodsRepository.find({
-      relations: ['origin'],
-    });
+    return this.foodsRepository.getFoods();
   }
 
   createFood(createFoodDto: CreateFoodDto): Promise<Food> {
