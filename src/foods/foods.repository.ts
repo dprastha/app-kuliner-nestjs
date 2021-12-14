@@ -7,10 +7,10 @@ import { Logger } from '@nestjs/common';
 export class FoodsRepository extends Repository<Food> {
   private logger = new Logger('Food Repository', { timestamp: true });
   async getFoods(): Promise<Food[]> {
-    const query = this.createQueryBuilder('food');
-
     try {
-      const foods = query.getMany();
+      const foods = this.find({
+        relations: ['origin'],
+      });
       return foods;
     } catch (error) {
       this.logger.error(`Failed retrieving all food data`), error.stack;

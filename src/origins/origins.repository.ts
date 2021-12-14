@@ -1,13 +1,22 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateOriginDto } from './dto/create-origin.dto';
 import { Origin } from '../entities/origin.entity';
+import { InternalServerErrorException, Logger } from '@nestjs/common';
 
 @EntityRepository(Origin)
 export class OriginsRepository extends Repository<Origin> {
+  private logger = new Logger('Origin Repository', { timestamp: true });
   async getOrigins(): Promise<Origin[]> {
-    const origins = await this.createQueryBuilder('origin').getMany();
+    try {
+      const origins = await this.find({
+        relations: ['foods'],
+      });
 
-    return origins;
+      return origins;
+    } catch (error) {
+      this.logger.error(`Failed retrieving all origin data`), error.stack;
+      throw new InternalServerErrorException();
+    }
   }
 
   async createOrigin(CreateOriginDto: CreateOriginDto): Promise<Origin> {
