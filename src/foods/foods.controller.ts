@@ -23,7 +23,7 @@ export class FoodsController {
 
   @Get()
   getFoods(): Promise<Food[]> {
-    this.logger.verbose('Retrieving all food', true);
+    this.logger.verbose('Retrieving all food data', true);
 
     return this.foodService.getFoods();
   }
@@ -47,14 +47,14 @@ export class FoodsController {
     @Param('id') id: number,
     @Body() updateFoodDto: UpdateFoodDto,
   ): Promise<Food> {
-    this.logger.verbose(`Create food: ${JSON.stringify(updateFoodDto)}`);
+    this.logger.verbose(`Update food: ${JSON.stringify(updateFoodDto)}`);
 
     return this.foodService.updateFood(id, updateFoodDto);
   }
 
   @Delete('/:id')
   deleteFood(@Param('id') id: number): Promise<void> {
-    this.logger.verbose(`Deleted food with ${id}`);
+    this.logger.verbose(`Deleted food with id ${id}`);
 
     return this.foodService.deleteFood(id);
   }

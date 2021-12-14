@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Patch,
   Post,
@@ -17,20 +18,27 @@ import { OriginsService } from './origins.service';
 @Controller('origins')
 @UseGuards(AuthGuard())
 export class OriginsController {
+  private logger = new Logger('Origin Controller', { timestamp: true });
   constructor(private originService: OriginsService) {}
 
   @Get()
   getOrigins(): Promise<Origin[]> {
+    this.logger.verbose('Retrieving all origin data', true);
+
     return this.originService.getOrigins();
   }
 
   @Get('/:id')
   getOriginById(@Param('id') id: number): Promise<Origin> {
+    this.logger.verbose(`Retrieving origin with id ${id}`);
+
     return this.originService.getOriginById(id);
   }
 
   @Post()
   createOrigin(@Body() createOriginDto: CreateOriginDto): Promise<Origin> {
+    this.logger.verbose(`Create origin: ${JSON.stringify(createOriginDto)}`);
+
     return this.originService.createOrigin(createOriginDto);
   }
 
@@ -39,11 +47,15 @@ export class OriginsController {
     @Param('id') id: number,
     @Body() updateOriginDto: UpdateOriginDto,
   ): Promise<Origin> {
+    this.logger.verbose(`Update origin: ${JSON.stringify(updateOriginDto)}`);
+
     return this.originService.updateOriginName(id, updateOriginDto);
   }
 
   @Delete('/:id')
   deleteOrigin(@Param('id') id: number): Promise<void> {
+    this.logger.verbose(`Delete origin with id ${id}`);
+
     return this.originService.deleteOrigin(id);
   }
 }
