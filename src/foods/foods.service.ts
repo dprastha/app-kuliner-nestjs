@@ -4,6 +4,7 @@ import { CreateFoodDto } from './dto/create-food.dto';
 import { UpdateFoodDto } from './dto/update-food.dto';
 import { Food } from '../entities/food.entity';
 import { FoodsRepository } from './foods.repository';
+import { GetFoodsFilterDto } from './dto/get-foods-filter.dto';
 
 @Injectable()
 export class FoodsService {
@@ -12,8 +13,8 @@ export class FoodsService {
     private foodsRepository: FoodsRepository,
   ) {}
 
-  getFoods(): Promise<Food[]> {
-    return this.foodsRepository.getFoods();
+  getFoods(filterDto: GetFoodsFilterDto): Promise<Food[]> {
+    return this.foodsRepository.getFoods(filterDto);
   }
 
   createFood(createFoodDto: CreateFoodDto): Promise<Food> {

@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -14,6 +15,7 @@ import { UpdateFoodDto } from './dto/update-food.dto';
 import { Food } from '../entities/food.entity';
 import { FoodsService } from './foods.service';
 import { Logger } from '@nestjs/common';
+import { GetFoodsFilterDto } from './dto/get-foods-filter.dto';
 
 @Controller('foods')
 @UseGuards(AuthGuard())
@@ -22,10 +24,13 @@ export class FoodsController {
   constructor(private foodService: FoodsService) {}
 
   @Get()
-  getFoods(): Promise<Food[]> {
-    this.logger.verbose('Retrieving all food data', true);
+  getFoods(@Query() filterDto: GetFoodsFilterDto): Promise<Food[]> {
+    this.logger.verbose(
+      `Retrieving all food data. Filters: ${JSON.stringify(filterDto)}`,
+      true,
+    );
 
-    return this.foodService.getFoods();
+    return this.foodService.getFoods(filterDto);
   }
 
   @Get('/:id')

@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,8 +26,6 @@ export class Origin {
   @DeleteDateColumn({ nullable: true })
   deleted_at: Date;
 
-  @ManyToOne(() => Food, (food) => food.origin, {
-    eager: true,
-  })
+  @OneToMany(() => Food, (food) => food.origin, { eager: true })
   foods: Food[];
 }
