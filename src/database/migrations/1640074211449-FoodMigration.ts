@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class OriginMigration1638159678829 implements MigrationInterface {
+export class FoodMigration1640074211449 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'origin',
+        name: 'food',
         columns: [
           {
             name: 'id',
@@ -18,12 +18,16 @@ export class OriginMigration1638159678829 implements MigrationInterface {
             isGenerated: true,
           },
           {
-            name: 'foodsId',
+            name: 'originId',
             type: 'int',
             isNullable: true,
           },
           {
             name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'description',
             type: 'varchar',
           },
           {
@@ -55,25 +59,14 @@ export class OriginMigration1638159678829 implements MigrationInterface {
         onUpdate: 'CASCADE',
       }),
     );
-
-    await queryRunner.createForeignKey(
-      'origin',
-      new TableForeignKey({
-        columnNames: ['foodsId'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'food',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('origin');
+    const table = await queryRunner.getTable('food');
     const foreignKey = table.foreignKeys.find((fk) =>
-      fk.columnNames.includes('foodsId'),
+      fk.columnNames.includes('originId'),
     );
-    queryRunner.dropForeignKey('origin', foreignKey);
-    queryRunner.dropTable('origin');
+    queryRunner.dropForeignKey('food', foreignKey);
+    await queryRunner.dropTable('food');
   }
 }

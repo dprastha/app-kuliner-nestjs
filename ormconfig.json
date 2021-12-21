@@ -11,7 +11,7 @@
       "build/entities/*.entity.js"
   ],
   "migrations": [
-      "build/migrations/*.js"
+      "build/database/migrations/*.js"
   ],
    "cli": {
       "entitiesDir": "src/entities",
