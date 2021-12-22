@@ -10,13 +10,18 @@
 
 - `npm install`
 - `cp .env.example .env`
-- `npm run typeorm migrate:run`
+- `npm run migrate`
+- `npm run seed:run`
 - `npm run start:dev`
 
-## Demo
+## You can demo this App directly using this link, hosted with Heroku
 
 https://dprastha-app-kuliner.herokuapp.com/
 
-## Documentation
+## Frontend App
+
+https://dprastha.github.io/app-kuliner-frontend/
+
+## API Documentation
 
 https://documenter.getpostman.com/view/13334944/UVR4MpHf
