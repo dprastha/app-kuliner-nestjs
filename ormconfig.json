@@ -13,8 +13,12 @@
   "migrations": [
       "build/database/migrations/*.js"
   ],
+  "seeds": ["build/database/seeder/*js"],
+  "factories": ["build/database/factory/*.js"],
    "cli": {
       "entitiesDir": "src/entities",
-      "migrationsDir": "src/migrations"
+      "migrationsDir": "src/database/migrations",
+      "seedDir": "src/database/seeder",
+      "factoryDir": "src/database/factory"
    }
 }

@@ -1,6 +1,6 @@
 {
    "name": "app-kuliner",
-   "version": "2.1.0",
+   "version": "2.2.0",
    "description": "App Kuliner REST API",
    "author": "Daniel Prastha",
    "private": true,
@@ -21,7 +21,9 @@
       "test:e2e": "jest --config ./test/jest-e2e.json",
       "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
       "migrate": "typeorm migration:run",
-      "revert": "typeorm migration:revert"
+      "revert": "typeorm migration:revert",
+      "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
+      "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
    },
    "dependencies": {
       "@hapi/joi": "^17.1.1",
@@ -36,20 +38,21 @@
       "bcrypt": "^5.0.1",
       "class-transformer": "^0.4.0",
       "class-validator": "^0.13.1",
-      "mysql": "^2.14.1",
       "passport": "^0.4.1",
       "passport-jwt": "^4.0.0",
       "pg": "^8.7.1",
       "reflect-metadata": "^0.1.10",
       "rimraf": "^3.0.2",
       "rxjs": "^7.2.0",
-      "typeorm": "^0.2.38"
-   },
+      "typeorm": "^0.2.41",
+      "typeorm-seeding": "^1.6.1"
+   }, 
    "devDependencies": {
       "@nestjs/cli": "^8.0.0",
       "@nestjs/schematics": "^8.0.0",
       "@nestjs/testing": "^8.0.0",
       "@types/express": "^4.17.13",
+      "@types/faker": "^5.5.9",
       "@types/hapi__joi": "^17.1.7",
       "@types/jest": "^27.0.1",
       "@types/node": "^15.14.1",
